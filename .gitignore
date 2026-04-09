@@ -1,0 +1,11 @@
+.DS_Store
+
+# Build output
+dist/
+
+# Config with real credentials
+config.yaml
+
+# Test artifacts
+/tmp/
+*.pem

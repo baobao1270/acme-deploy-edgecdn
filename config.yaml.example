@@ -1,0 +1,54 @@
+provider: alicloud-esa
+
+alicloud-esa:
+  # Alibaba Cloud credentials.
+  # If left empty, falls back to ALICLOUD_ACCESS_KEY_ID and ALICLOUD_ACCESS_KEY_SECRET env vars.
+  access_key_id: ""
+  access_key_secret: ""
+
+  # ESA API endpoint.
+  endpoint: "esa.cn-hangzhou.aliyuncs.com"
+
+  # The ESA site ID to deploy the certificate to.
+  # Find this in the ESA console or via the ListSites API.
+  site_id: 1234567890123
+
+  # Certificate name on ESA. Defaults to "acme-{domain}" if empty.
+  # On renewal, an existing certificate with this name is updated in place.
+  # NOTE: Matching is by name only — a certificate with the same name will be
+  # replaced regardless of its SANs or other attributes. To deploy multiple
+  # distinct certificates for the same domain, use different cert_name values.
+  cert_name: ""
+
+  # Region for certificate storage. Optional.
+  region: ""
+
+# Tencent Cloud EdgeOne (TEO) configuration.
+# Deploys certificates by first uploading to SSL Certificate Manager,
+# then binding to EdgeOne acceleration domains via ModifyHostsCertificate.
+tencentcloud-teo:
+  # Tencent Cloud credentials (SecretId / SecretKey).
+  secret_id: ""
+  secret_key: ""
+
+  # EdgeOne zone ID (site ID).
+  zone_id: "zone-abc123"
+
+  # Acceleration domain names to deploy the certificate to.
+  hosts:
+    - "example.com"
+    - "www.example.com"
+
+  # Certificate alias in SSL Certificate Manager. Defaults to "acme-{domain}".
+  # A date suffix (-YYYYMMDD) is appended automatically on each deploy.
+  cert_name: ""
+
+  # Region. Optional, usually left empty.
+  region: ""
+
+  # Custom API endpoints. Use these to switch between CN and Global accounts:
+  #   CN:     ssl.tencentcloudapi.com  / teo.tencentcloudapi.com
+  #   Global: ssl.intl.tencentcloudapi.com / teo.intl.tencentcloudapi.com
+  # If left empty, the SDK uses its built-in defaults (CN).
+  ssl_endpoint: ""
+  teo_endpoint: ""
