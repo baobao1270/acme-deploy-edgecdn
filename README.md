@@ -1,5 +1,7 @@
 # acme-deploy-edgecdn
 
+[中文文档](README_CN.md)
+
 Deploy ACME certificates to edge CDN providers. Designed to run as an [acme.sh](https://github.com/acmesh-official/acme.sh) `--reloadcmd` so certificates are automatically deployed on renewal.
 
 ## Supported providers
